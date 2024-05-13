@@ -1,5 +1,5 @@
-[![R build
-status](https://github.com/jaytimm/puremoe/workflows/R-CMD-check/badge.svg)](https://github.com/jaytimm/puremoe/actions)
+[![](https://www.r-pkg.org/badges/version/puremoe)](https://cran.r-project.org/package=puremoe)
+[![](http://cranlogs.r-pkg.org/badges/last-month/puremoe)](https://cran.r-project.org/package=puremoe)
 
 # puremoe
 
@@ -27,10 +27,16 @@ library.
 
 ## Installation
 
-You can download the development version from GitHub with:
+Get the released version from CRAN:
 
 ``` r
-devtools::install_github("jaytimm/puremoe")
+install.packages('puremoe')
+```
+
+Or the development version from GitHub with:
+
+``` r
+remotes::install_github("jaytimm/puremoe")
 ```
 
 ## Usage
@@ -79,15 +85,15 @@ pubtations <- pmids |>
                        cores = 2)
 ```
 
-> When the endpoint is PMC, the \`get_records() function takes a vector
+> When the endpoint is PMC, the `get_records()` function takes a vector
 > of filepaths (from the PMC Open Access list) instead of PMIDs.
 
 ``` r
-pmclist <- puremoe::data_pmc_list(force_install = F)
+pmclist <- puremoe::data_pmc_list(use_persistent_storage = T)
 pmc_pmids <- pmclist[PMID %in% pmids]
 
 pmc_fulltext <- pmc_pmids$fpath[1:5] |> 
-  puremoe::get_records(endpoint = 'pmc_fulltext', cores = 2)
+  puremoe::get_records(endpoint = 'pmc_fulltext', cores = 1)
 ```
 
 ## Summary
